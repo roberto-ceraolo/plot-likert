@@ -56,6 +56,7 @@ def plot_counts(
     compute_percentages: bool = False,
     bar_labels: bool = False,
     bar_labels_color: typing.Union[str, typing.List[str]] = "white",
+    center_line: bool = False,
     **kwargs,
 ) -> matplotlib.axes.Axes:
     """
@@ -139,8 +140,9 @@ def plot_counts(
     )
 
     # Draw center line
-    center_line = axes.axvline(center, linestyle="--", color="black", alpha=0.5)
-    center_line.set_zorder(-1)
+    if center_line:
+        center_line = axes.axvline(center, linestyle="--", color="black", alpha=0.5)
+        center_line.set_zorder(-1)
 
     # Compute and show x labels
     max_width = int(round(padded_counts.sum(axis=1).max()))
